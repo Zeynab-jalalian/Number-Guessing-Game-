@@ -1,10 +1,12 @@
 let msg1 = document.getElementById("message1");
 let msg2 = document.getElementById("message2");
 let msg3 = document.getElementById("message3");
+let guess = document.getElementById("guess");
 
 let answer = Math.floor(Math.random() * 100) + 1;
 let no_of_guesses = 0;
 let guessed_nums = [];
+guess.focus();
 
 function play() {
   let user_guess = document.getElementById("guess").value;
@@ -25,7 +27,14 @@ function play() {
       msg1.textContent = "Yippie You  Win!!";
       msg2.textContent = "The number was:" + answer;
       msg3.textContent = "You guessed it in " + no_of_guesses + " guesses";
-      
+      document.getElementById("my_btn").disabled = true;
     }
   }
+  guess.focus();
 }
+
+guess.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    play();
+  }
+});
